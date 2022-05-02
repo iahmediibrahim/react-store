@@ -19,6 +19,9 @@ const initialState = {
 	products_error: false,
 	products: [],
 	featured_products: [],
+	single_product_loading: false,
+	single_product_error: false,
+	single_product: {},
 }
 
 const ProductsContext = React.createContext()
@@ -37,6 +40,16 @@ export const ProductsProvider = ({ children }) => {
 			dispatch({ type: GET_PRODUCTS_SUCCESS, products })
 		} catch (error) {
 			dispatch({ type: GET_PRODUCTS_ERROR })
+		}
+	}
+	const fetchSingleProduct = async (url) => {
+		dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
+		try {
+			const resp = await axios(url)
+			const product = resp.data
+			dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, product })
+		} catch (error) {
+			dispatch({ type: GET_SINGLE_PRODUCT_ERROR })
 		}
 	}
 	useEffect(() => {
