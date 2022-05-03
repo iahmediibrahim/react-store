@@ -23,6 +23,11 @@ const filter_reducer = (state, action) => {
 				...state,
 				grid_view: true,
 			}
+		case UPDATE_SORT:
+			return {
+				...state,
+				sort: action.value,
+			}
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`)
 	}
