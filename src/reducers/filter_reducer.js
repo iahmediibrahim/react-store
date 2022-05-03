@@ -13,6 +13,16 @@ const filter_reducer = (state, action) => {
 	switch (action.type) {
 		case LOAD_PRODUCTS:
 			return { ...state, all_products: [...action.products], filtered_products: [...action.products] }
+		case SET_LISTVIEW:
+			return {
+				...state,
+				grid_view: false,
+			}
+		case SET_GRIDVIEW:
+			return {
+				...state,
+				grid_view: true,
+			}
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`)
 	}
