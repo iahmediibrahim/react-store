@@ -12,7 +12,19 @@ import {
 const filter_reducer = (state, action) => {
 	switch (action.type) {
 		case LOAD_PRODUCTS:
-			return { ...state, all_products: [...action.products], filtered_products: [...action.products] }
+			let maxPrice = action.products.map((product) => product.price)
+			maxPrice = Math.max(...maxPrice)
+			console.log(maxPrice)
+			return {
+				...state,
+				all_products: [...action.products],
+				filtered_products: [...action.products],
+				filters: {
+					...state.filters,
+					max_price: maxPrice,
+					price: maxPrice,
+				},
+			}
 		case SET_LISTVIEW:
 			return {
 				...state,
