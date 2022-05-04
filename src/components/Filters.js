@@ -68,7 +68,7 @@ const Filters = () => {
 						<div className='colors'>
 							{colors.map((c, index) => (
 								<React.Fragment key={index}>
-									{c === 'all' && (
+									{c === 'all' ? (
 										<button
 											className={`all-btn ${c === 'all' ? 'active' : ''}`}
 											onClick={updateFilters}
@@ -77,16 +77,17 @@ const Filters = () => {
 											type='button'>
 											all
 										</button>
+									) : (
+										<button
+											className={`color-btn ${c === color ? 'active' : ''}`}
+											onClick={updateFilters}
+											style={{ background: c }}
+											name='color'
+											data-color={c}
+											type='button'>
+											{color === c && <FaCheck />}
+										</button>
 									)}
-									<button
-										className={`color-btn ${c === color ? 'active' : ''}`}
-										onClick={updateFilters}
-										style={{ background: c }}
-										name='color'
-										data-color={c}
-										type='button'>
-										{color === c && <FaCheck />}
-									</button>
 								</React.Fragment>
 							))}
 						</div>
