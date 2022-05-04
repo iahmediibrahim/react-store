@@ -14,7 +14,6 @@ const filter_reducer = (state, action) => {
 		case LOAD_PRODUCTS:
 			let maxPrice = action.products.map((product) => product.price)
 			maxPrice = Math.max(...maxPrice)
-			console.log(maxPrice)
 			return {
 				...state,
 				all_products: [...action.products],
@@ -62,9 +61,28 @@ const filter_reducer = (state, action) => {
 		case UPDATE_FILTERS:
 			return { ...state, filters: action.filters }
 		case FILTER_PRODUCTS:
-			return { ...state }
+			const {
+				filters: { text, company, category, color, price, shipping },
+				all_products,
+			} = state
+			let filterProducts = [...all_products]
+			// filtering
+			if (text) filterProducts = filterProducts.filter((product) => product.name.toLowerCase().startsWith(text))
+
+			return { ...state, filtered_products: filterProducts }
 		case CLEAR_FILTERS:
-			return { ...state, filters: {} }
+			return {
+				...state,
+				filters: {
+					...state.filters,
+					text: '',
+					company: 'all',
+					category: 'all',
+					color: 'all',
+					price: state.filters.max_price,
+					shipping: false,
+				},
+			}
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`)
 	}
