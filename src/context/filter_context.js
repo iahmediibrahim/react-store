@@ -19,7 +19,7 @@ const initialState = {
 	sort: 'price-lowest',
 	filters: {
 		text: '',
-		company: 'all',
+		company: 'marcos',
 		category: 'all',
 		color: 'all',
 		min_price: 0,
@@ -49,7 +49,10 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: UPDATE_SORT, value })
 	}
 	const updateFilters = (e) => {
-		const { name, value } = e.target
+		let { name, value } = e.target
+		if (name === 'category') value = e.target.textContent
+		if (name === 'color') value = e.target.dataset.color
+		console.log(value)
 		dispatch({ type: UPDATE_FILTERS, filters: { ...state.filters, [name]: value } })
 	}
 	const clearFilters = () => dispatch({ type: CLEAR_FILTERS })

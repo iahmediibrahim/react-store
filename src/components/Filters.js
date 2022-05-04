@@ -32,8 +32,70 @@ const Filters = () => {
 						/>
 					</div>
 					{/* end search input */}
-					{/* search input */}
-					{/* end search input */}
+					{/* categories */}
+					<div className='form-control'>
+						<h5>category</h5>
+						<div>
+							{categories.map((c, index) => (
+								<button
+									key={index}
+									className={`${c.toLowerCase() === category ? 'active' : ''}`}
+									onClick={updateFilters}
+									name='category'
+									type='button'>
+									{c}
+								</button>
+							))}
+						</div>
+					</div>
+					{/* end categories */}
+
+					{/* companies */}
+					<div className='form-control'>
+						<h5>company</h5>
+						<select name='company' value={company} onChange={updateFilters}>
+							{companies.map((c, index) => (
+								<option key={index} value={c}>
+									{c}
+								</option>
+							))}
+						</select>
+					</div>
+					{/* end companies */}
+					{/* colors */}
+					<div className='form-control'>
+						<h5>colors</h5>
+						<div className='colors'>
+							{colors.map((c, index) => (
+								<React.Fragment key={index}>
+									{c === 'all' && (
+										<button
+											className={`all-btn ${c === 'all' ? 'active' : ''}`}
+											onClick={updateFilters}
+											name='color'
+											data-color={'all'}
+											type='button'>
+											all
+										</button>
+									)}
+									<button
+										className={`color-btn ${c === color ? 'active' : ''}`}
+										onClick={updateFilters}
+										style={{ background: c }}
+										name='color'
+										data-color={c}
+										type='button'>
+										{color === c && <FaCheck />}
+									</button>
+								</React.Fragment>
+							))}
+						</div>
+					</div>
+					{/* end colors */}
+
+					{/* Price */}
+
+					{/* end Price */}
 				</form>
 			</div>
 		</Wrapper>
