@@ -59,6 +59,12 @@ const filter_reducer = (state, action) => {
 				...state,
 				filtered_products: tempProducts,
 			}
+		case UPDATE_FILTERS:
+			return { ...state, filters: action.filters }
+		case FILTER_PRODUCTS:
+			return { ...state }
+		case CLEAR_FILTERS:
+			return { ...state, filters: {} }
 		default:
 			throw new Error(`No Matching "${action.type}" - action type`)
 	}
