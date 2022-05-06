@@ -21,8 +21,13 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   // add to cart
   const addToCart = (id, color, amount, product) => dispatch({ type: ADD_TO_CART, payload: { id, color, amount, product } })
+  const removeItem = (id) => dispatch({ type: REMOVE_CART_ITEM, id })
+  const toggleAmount = (id, color, amount, product) => dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, color, amount, product } })
+  const clearCart = () => dispatch({ type: CLEAR_CART })
+  const countTotal = () => dispatch({ type: COUNT_CART_TOTALS })
+
   return (
-    <CartContext.Provider value={{ ...state, addToCart }}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{ ...state, addToCart, removeItem, toggleAmount, clearCart, countTotal }}>{children}</CartContext.Provider>
   )
 }
 // make sure use
