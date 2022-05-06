@@ -12,7 +12,9 @@ const root = createRoot(container)
 root.render(
 	<ProductsProvider>
 		<FilterProvider>
-			<App />
+			<CartProvider>
+				<App />
+			</CartProvider>
 		</FilterProvider>
 	</ProductsProvider>,
 )
