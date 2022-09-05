@@ -3,19 +3,15 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 const UserContext = createContext()
 export const UserProvider = ({ children }) => {
-  const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0()
+  const { loginWithRedirect, logout, user } = useAuth0()
   const [myUser, setMyUser] = useState(null)
   useEffect(() => {
-    if (isAuthenticated) {
-      setMyUser(user)
-
-    } else {
-      setMyUser(false)
-
-    }
-  }, [isAuthenticated])
+    setMyUser(user)
+  }, [user])
   return (
-    <UserContext.Provider value={{ loginWithRedirect, logout, myUser }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ loginWithRedirect, logout, myUser }}>
+      {children}
+    </UserContext.Provider>
   )
 }
 // make sure use

@@ -6,4 +6,15 @@ import Products from './ProductsPage'
 import SingleProduct from './SingleProductPage'
 import Cart from './CartPage'
 import Checkout from './CheckoutPage'
-export { About, Home, Error, PrivateRoute, Products, SingleProduct, Cart, Checkout }
+import AuthWrapper from './AuthWrapper'
+export {
+  About,
+  Home,
+  Error,
+  PrivateRoute,
+  Products,
+  SingleProduct,
+  Cart,
+  Checkout,
+  AuthWrapper,
+}
